@@ -265,7 +265,11 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
     );
     return CodeEditorTapRegion(
       onTapOutside: (_) {
-        widget.focusNode.unfocus();
+          if (kIsAndroid || kIsIOS) {
+            return;
+          } else {
+            widget.focusNode.unfocus();
+          }
       },
       child: NotificationListener(
         onNotification: (notification) {
